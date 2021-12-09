@@ -37,14 +37,14 @@ impl LineSegment {
         self.0.y == self.1.y
     }
 
-    fn is_45deg(&self) -> bool {
+    fn is_diagonal(&self) -> bool {
         (self.0.x - self.1.x).abs() == (self.0.y - self.1.y).abs()
     }
 
     fn points(&self) -> Vec<Point> {
         let mut v = vec![];
 
-        if self.is_45deg() {
+        if self.is_diagonal() {
             let x1 = self.0.x;
             let x2 = self.1.x;
 
@@ -105,7 +105,7 @@ fn main() {
 
     let mapping: HashMap<Point, usize> = segments
         .iter()
-        .filter(|segment| !segment.is_45deg())
+        .filter(|segment| !segment.is_diagonal())
         .fold(HashMap::new(), |mut acc, segment| {
             for point in segment.points() {
                 let e = acc.entry(point).or_insert(0);
