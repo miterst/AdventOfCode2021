@@ -55,7 +55,8 @@ fn part2(notes: &[(Vec<&str>, Vec<&str>)]) -> usize {
                     // only #9 and #8 contain #4 fully
                     if signal.union(&digits[4]).count() == 6 {
                         digits[9].extend(signal);
-                    } // #0 and #9 contain #1 fully, but #9 will finish above
+                    }
+                    // #0 and #9 contain #1 fully, but #9 will finish above
                     else if signal.union(&digits[1]).count() == 6 {
                         digits[0].extend(signal);
                     } else {
@@ -66,11 +67,18 @@ fn part2(notes: &[(Vec<&str>, Vec<&str>)]) -> usize {
             }
         }
 
-        let digit: String = output_signals.iter().map(|output_digit| {
-            let output_digit = output_digit.chars().collect();
-            let (d, _) = digits.iter().enumerate().find(|(_, d)| *d == &output_digit).unwrap();
-            d.to_string()
-        }).collect();
+        let digit: String = output_signals
+            .iter()
+            .map(|output_digit| {
+                let output_digit = output_digit.chars().collect();
+                let (d, _) = digits
+                    .iter()
+                    .enumerate()
+                    .find(|(_, d)| *d == &output_digit)
+                    .unwrap();
+                d.to_string()
+            })
+            .collect();
 
         output.push(digit.parse::<usize>().unwrap());
     }
