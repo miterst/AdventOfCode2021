@@ -30,7 +30,7 @@ fn part2(graph: &Graph) {
         if node.chars().next().unwrap().is_lowercase() {
             *lowercase_nodes_counter.entry(node).or_default() += 1;
 
-            if lowercase_nodes_counter[&node] > 2 {
+            if lowercase_nodes_counter[node] > 2 {
                 continue;
             }
 
